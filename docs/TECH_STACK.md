@@ -1,0 +1,39 @@
+# TECH_STACK.md
+
+This document lists the tools, libraries, and technologies used in the Management Names Extraction Pipeline, along with their versions (where applicable) and the role each plays in the project.
+
+The pipeline leverages a combination of Python software and external AI services, all within a Dockerized environment, to achieve its goals. Below is the tech stack breakdown:
+
+- **Python 3.x** (e.g. Python 3.10 or 3.11): The primary programming language for the pipeline. Python is used for reading JSON files, orchestrating the process, calling the LLM API, and handling output. Version 3.10+ is recommended for its performance improvements and support for modern libraries.
+- **Docker** (e.g. Docker Engine 24.x): Used to containerize the application. Docker ensures that the pipeline runs in a consistent environment regardless of the host system. The Docker setup uses a base image like `python:3.11-slim` to include Python and necessary system libraries. All other dependencies are installed within the Docker image. This makes deployment and scaling (running on different machines or cloud instances) easier.
+- **OpenAI API (GPT model)**: The large language model service used for extraction. Specifically, the pipeline is designed to use OpenAI's GPT family (such as **GPT-4** for highest accuracy, or **GPT-3.5-Turbo** for faster/cheaper processing). The OpenAI API provides the natural language understanding and extraction capabilities that are at the core of the pipeline. An API key is required (provided via environment variable). The choice of model can be configured:
+  - *openai GPT-4*: Used for its superior ability to accurately extract information from complex text. (Max context ~8K or 32K tokens depending on model variant.)
+  - *openai GPT-3.5-Turbo*: A faster, more cost-effective alternative, with slightly lower accuracy on nuanced text. (Max context ~4K tokens, as of early 2025.)
+- **OpenAI Python SDK** (openai Python package, e.g. version 0.27.*): A Python library to interface with the OpenAI API. It handles HTTP requests to the API and returns model responses. The pipeline uses this SDK to send the prompt and receive the completion. The SDK also helps with error handling and retry logic out-of-the-box for certain errors.
+- **Requests / HTTPX**: Under the hood, the OpenAI SDK uses an HTTP library to make requests. This is abstracted away, but essentially HTTP protocols are used to communicate with the cloud API. (No direct use in code beyond what the OpenAI library does.)
+- **JSON library (Python `json` module)**: Used to parse input files and to decode/encode JSON data. The built-in `json` module handles reading the content of each JSON file and also is used to parse the JSON output from the LLM (if the LLM returns a JSON string of results).
+- **BeautifulSoup4** (bs4) *(Optional)*: If input content is HTML, BeautifulSoup4 can be used to parse HTML and extract text. This is included in the stack in case HTML-to-text conversion is needed. Version 4.x is sufficient.
+- **tiktoken or similar** *(Optional)*: A tokenization library for OpenAI models. Used to count tokens in the prompt content to ensure we don't exceed model limits. For example, `tiktoken` can tell how many tokens a given text will be for a specific model (GPT-4 or 3.5), allowing the pipeline to truncate or split content intelligently. This is an implementation detail; not strictly necessary but helpful for large inputs.
+- **Pandas** *(Optional, e.g. pandas 2.x)*: A data analysis library that could be used to accumulate and output results (for example, writing the final CSV of extracted names and roles). The pipeline might use pandas DataFrames to collect results in memory and easily output to CSV/Excel. However, for memory efficiency with 150k entries, using plain file writes (as shown in pseudocode) is also fine. Pandas is mainly handy during development or for secondary analysis of results.
+- **NumPy** *(Optional, e.g. 1.24+)*: Though not directly needed for text processing, NumPy is often a dependency of Pandas and other libraries. It doesn't play a direct role in the pipeline logic, but will be present if Pandas is used.
+- **Logging** (Python `logging` module): Used for logging messages during pipeline execution. This isn't an external library, but a part of Python's standard library. It allows the pipeline to output info, warning, and error messages in a structured way (which can be crucial for debugging, especially inside Docker where standard output can be captured).
+- **Shell / Make (for automation)** *(Optional)*: Outside the Python code, the project might include a shell script or Makefile to automate running the Docker container, building images, etc. For example, a `run.sh` script to simplify the docker run command, or a Makefile target for building the image. While not part of the pipeline code, these tools help manage the pipeline execution environment.
+- **VSCode or Cursor IDE** *(Development tool)*: The user is coding with Cursor, an AI-augmented IDE. This isn't part of the deployed stack, but it's relevant to note that the documentation is written to be friendly in such an environment (with code-comment style explanations). Cursor or VSCode would use these docs to assist in writing code, ensuring that naming and design remain consistent with the documentation.
+
+## Version Control and Collaboration
+
+- **Git**: The project is presumably managed under version control (git), with the documentation and code in a repository. This allows tracking changes to the pipeline and docs. (Not a runtime tool, but part of the development stack.)
+- **GitHub/GitLab** *(Optional)*: If collaborating or storing the code remotely. Possibly used to host the repository containing this project. Continuous integration might be set up to build the Docker image or run tests whenever changes are made.
+
+## Why These Technologies?
+
+Each component in the tech stack was chosen for a specific reason:
+- *Python:* Provides ease of text processing and a rich ecosystem (OpenAI API client, JSON handling, etc.), and is familiar to data engineers and scientists.
+- *Docker:* Ensures the massive job can run on any server or cloud VM without "it works on my machine" issues. It encapsulates dependencies (like the correct Python version and required libraries) and makes scaling out (running multiple instances) straightforward.
+- *OpenAI GPT LLM:* Traditional text parsing (regex, rule-based NLP) would struggle with the variety in how different websites list their management. The GPT model can understand context and extract names and titles reliably across varied formats, making it an ideal choice for this unstructured data extraction.
+- *OpenAI SDK and supporting libs:* Simplify integration with the LLM, so we don't have to craft raw HTTP calls or handle low-level details. We use well-supported libraries that also keep up with API changes.
+- *Utilities like BeautifulSoup:* Just in case we need to deal with HTML content, this proven library avoids writing a custom parser.
+- *Tokenization tools:* They help manage the only real constraint in using an LLM – the input size. By knowing token counts, we can avoid errors from sending too much text.
+- *Pandas/CSV:* For output, using a common format like CSV ensures the results can be easily consumed (in Excel, databases, etc.). Pandas is there if we needed to do any data manipulation or if we prefer its CSV writing for large data.
+
+All tools listed are open-source or accessible with appropriate API keys (OpenAI). The **TECH_STACK.md** serves as a reference for developers to know what technologies they need to install or be familiar with to work on this project, and to understand how each piece contributes to the whole. 

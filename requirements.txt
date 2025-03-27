@@ -1,0 +1,40 @@
+# Core NLP and text processing
+spacy==3.5.0               # NLP library for NER and text processing
+
+# HTML parsing
+beautifulsoup4==4.11.1     # For extracting plain text from HTML content
+
+# LLM API integration
+openai==0.27.0             # OpenAI API client to interact with GPT models
+
+# Database connectivity
+psycopg2-binary==2.9.6      # PostgreSQL adapter for Python
+
+# Language detection (to filter non-English pages)
+langdetect==1.0.9          # For detecting the language of the text
+
+# Progress visualization during processing
+tqdm==4.64.1               # Provides progress bars for loops
+
+# Data manipulation and CSV output (optional, but useful)
+pandas==2.0.0              # For handling data frames and CSV export
+
+# Additional utilities (optional)
+# requests==2.28.1         # HTTP library if needed for custom API calls
+# tiktoken==0.3.0          # Optional for token counting with OpenAI models
+
+# Core dependencies
+python-dotenv==1.0.0  # For loading environment variables
+minio==7.2.3  # For MinIO client
+pydantic==2.6.3  # For data validation and settings management
+
+# Testing dependencies
+pytest==8.0.2  # For running tests
+pytest-cov==4.1.0  # For test coverage reporting
+pytest-mock==3.12.0  # For mocking in tests
+
+# Development dependencies
+black==24.2.0  # For code formatting
+isort==5.13.2  # For import sorting
+flake8==7.0.0  # For linting
+mypy==1.8.0  # For type checking

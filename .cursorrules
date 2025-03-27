@@ -1,0 +1,100 @@
+# Cursor Rules for Management Names Extraction Pipeline
+
+# Project Structure Rules
+- All Python source code should be in the `src/` directory
+- All tests should be in the `tests/` directory, with subdirectories matching the module structure
+- Documentation should be in the `docs/` directory
+- Configuration files (like requirements.txt, Dockerfile) should be in the root directory
+
+# Code Style Rules
+- Use Python 3.10+ syntax and features
+- Follow PEP 8 style guide
+- Use type hints for function parameters and return values
+- Include docstrings for all modules, classes, and functions
+- Keep functions focused and single-purpose
+- Use meaningful variable and function names that reflect their purpose
+
+# Testing Rules
+- Write tests for each module before implementing the module
+- Place tests in appropriate subdirectories under `tests/` (e.g., `tests/data_reader/`, `tests/llm_extractor/`)
+- Use pytest for testing
+- Include both unit tests and integration tests where appropriate
+- Test error cases and edge conditions
+- Mock external dependencies (like OpenAI API) in tests
+
+# Development Workflow
+- Develop and test modules locally first
+- Use virtual environment for local development
+- Test each module thoroughly before integration
+- Document any API changes or new features
+- Keep the code modular and maintainable
+
+# Module Dependencies
+- Each module should have minimal dependencies on other modules
+- Use dependency injection where appropriate
+- Document module dependencies in docstrings
+- Keep the dependency graph shallow and clear
+
+# Error Handling
+- Use custom exceptions for project-specific errors
+- Log errors with appropriate context
+- Handle API rate limits and timeouts gracefully
+- Implement retry logic for transient failures
+- Provide clear error messages for debugging
+
+# Documentation
+- Keep documentation up to date with code changes
+- Include examples in docstrings
+- Document any configuration options
+- Update CHANGELOG.md for significant changes
+
+# Performance Considerations
+- Process files one at a time to manage memory
+- Implement proper cleanup of resources
+- Use efficient data structures
+- Consider parallel processing for large datasets
+- Monitor and log performance metrics
+
+# Security
+- Never commit API keys or sensitive data
+- Use environment variables for configuration
+- Implement proper input validation
+- Sanitize output data
+- Follow security best practices for API calls
+
+# Docker Integration
+- Keep Dockerfile optimized and clean
+- Use multi-stage builds where appropriate
+- Document Docker-specific configuration
+- Test Docker builds locally before deployment
+
+# Git Practices
+- Use meaningful commit messages
+- Keep commits focused and atomic
+- Branch for new features
+- Review code before merging
+- Keep the repository clean and organized
+
+# Testing Commands
+- Use `pytest tests/` to run all tests
+- Use `pytest tests/module_name/` to run tests for a specific module
+- Use `pytest -v` for verbose output
+- Use `pytest --cov=src tests/` for coverage reports
+
+# Development Commands
+- Use `python -m pytest` to run tests
+- Use `python src/pipeline.py` to run the pipeline locally
+- Use `docker build -t management-extractor:latest .` to build the Docker image
+- Use `docker run` with appropriate parameters as documented in USAGE.md
+
+# Code Review Checklist
+- [ ] Code follows PEP 8 style guide
+- [ ] Type hints are used appropriately
+- [ ] Docstrings are complete and accurate
+- [ ] Tests are comprehensive and pass
+- [ ] Error handling is robust
+- [ ] Performance considerations are addressed
+- [ ] Security best practices are followed
+- [ ] Documentation is updated
+- [ ] No sensitive data is committed
+- [ ] Code is modular and maintainable 
