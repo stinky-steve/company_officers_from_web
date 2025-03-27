@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Optional
 
 from dotenv import load_dotenv
-from pydantic import BaseSettings, Field, HttpUrl, SecretStr
+from pydantic import BaseSettings, Field, SecretStr, AnyHttpUrl
 
 # Load environment variables from .env file
 load_dotenv()
@@ -13,7 +13,7 @@ load_dotenv()
 class MinIOSettings(BaseSettings):
     """MinIO configuration settings."""
     
-    endpoint: HttpUrl = Field(..., env='MINIO_ENDPOINT')
+    endpoint: str = Field(..., env='MINIO_ENDPOINT')
     access_key: str = Field(..., env='MINIO_ACCESS_KEY')
     secret_key: SecretStr = Field(..., env='MINIO_SECRET_KEY')
     bucket_name: str = Field(..., env='MINIO_BUCKET_NAME')

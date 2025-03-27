@@ -43,10 +43,13 @@
 - Provide clear error messages for debugging
 
 # Documentation
-- Keep documentation up to date with code changes
-- Include examples in docstrings
-- Document any configuration options
-- Update CHANGELOG.md for significant changes
+- All code changes must be documented in the appropriate documentation files
+- API documentation should be maintained in `docs/API.md`
+- Setup instructions should be maintained in `docs/setup.md`
+- Data structure documentation is maintained in `docs/DATA_STRUCTURE.md`
+- Technical stack documentation is maintained in `docs/TECH_STACK.md`
+- Pipeline documentation is maintained in `docs/PIPELINE.md`
+- Architecture documentation is maintained in `docs/ARCHITECTURE.md`
 
 # Performance Considerations
 - Process files one at a time to manage memory
