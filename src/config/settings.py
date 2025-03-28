@@ -28,6 +28,16 @@ class OpenAISettings(BaseSettings):
     max_tokens: int = Field(default=1000, env='OPENAI_MAX_TOKENS')
 
 
+class DatabaseSettings(BaseSettings):
+    """Database configuration settings."""
+    
+    db_host: str = Field(..., env='PG_HOST')
+    db_port: int = Field(..., env='PG_PORT')
+    db_name: str = Field(..., env='PG_DB')
+    db_user: str = Field(..., env='PG_USER')
+    db_password: SecretStr = Field(..., env='PG_PASS')
+
+
 class AppSettings(BaseSettings):
     """Application configuration settings."""
     
@@ -41,6 +51,9 @@ class AppSettings(BaseSettings):
     
     # OpenAI settings
     openai: OpenAISettings = Field(default_factory=OpenAISettings)
+    
+    # Database settings
+    database: DatabaseSettings = Field(default_factory=DatabaseSettings)
     
     class Config:
         """Pydantic configuration."""

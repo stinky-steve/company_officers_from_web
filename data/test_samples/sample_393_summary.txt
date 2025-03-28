@@ -1246,5 +1246,8 @@ The planned work involves computerization, surface exploration, underground expl
 
 
 
-=== Extracted People ===
-No people extracted
+=== Executives/Officers ===
+No executives extracted
+
+=== Board Members ===
+No board members extracted

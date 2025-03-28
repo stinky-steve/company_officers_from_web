@@ -5,16 +5,26 @@ Source File: https%3A%2F%2Fayagoldsilver.com%2Four-approach-to-sustainability%2F
 
 === Management Sections ===
 
-[ performance. The factoring of HSEC and climate change into compensation also signals to stakeholders that their performance and excellence is a priority. 
- The compensation committee of the board of directors establishes ESG performance objectives for senior management, and Aya’s management sets objectives for the Corporation’s employees. 
- For more information on our compensation policies, please consul]
+[Additionally, to reflect our belief that achievement of ESG goals requires the collective action of a wider employee base, the Corporation has expanded the scope of ESG-linked compensation beyond the senior management team.]
 --------------------------------------------------
- performance. The factoring of HSEC and climate change into compensation also signals to stakeholders that their performance and excellence is a priority. 
- The compensation committee of the board of directors establishes ESG performance objectives for senior management, and Aya’s management sets objectives for the Corporation’s employees. 
- For more information on our compensation policies, please consul
+Additionally, to reflect our belief that achievement of ESG goals requires the collective action of a wider employee base, the Corporation has expanded the scope of ESG-linked compensation beyond the senior management team.
+
+[The compensation committee of the board of directors establishes ESG performance objectives for senior management, and Aya’s management sets objectives for the Corporation’s employees. 
+ ]
+--------------------------------------------------
+The compensation committee of the board of directors establishes ESG performance objectives for senior management, and Aya’s management sets objectives for the Corporation’s employees. 
+ 
 
 
-=== Extracted People ===
+=== Final Executives List ===
+No executives extracted
 
-Name: Aya
-Role: Director
+
+=== Final Board Members List ===
+[
+  {
+    "name": "Aya",
+    "role": "Director",
+    "contact_info": null
+  }
+]

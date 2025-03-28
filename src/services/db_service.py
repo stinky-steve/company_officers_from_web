@@ -11,16 +11,22 @@ from src.models.company import Company
 class DatabaseService:
     """Service for managing database operations."""
     
-    def __init__(self):
-        """Initialize the database service."""
-        load_dotenv()
+    def __init__(self, config: Dict[str, Any]):
+        """Initialize the database service.
         
-        # Get database connection parameters
-        self.host = os.getenv('PG_HOST')
-        self.port = os.getenv('PG_PORT')
-        self.dbname = os.getenv('PG_DB')
-        self.user = os.getenv('PG_USER')
-        self.password = os.getenv('PG_PASS')
+        Args:
+            config: Configuration dictionary containing database connection parameters
+        """
+        # Get database connection parameters from config
+        self.host = config['db_host']
+        self.port = config['db_port']
+        self.dbname = config['db_name']
+        self.user = config['db_user']
+        self.password = config['db_password']
+        
+        # Validate required configuration
+        if not all([self.host, self.port, self.dbname, self.user, self.password]):
+            raise ValueError("Missing required database configuration parameters")
         
     def get_connection(self):
         """Get a database connection."""

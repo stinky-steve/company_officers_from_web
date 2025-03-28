@@ -5,12 +5,12 @@ Source File: https%3A%2F%2Fayagoldsilver.com%2Fprojects%2Famizmiz%2F.json
 
 === Management Sections ===
 
-[us schist), marbleized limestone, overlying a volcanic assemblage of felsic pyroclastic rock, andesite and basalt. The Hercyninan Azegour pluton intruded the volcanosedimentary sequence. A thick Cretaceous continental and marine sedimentary sequence unconformably overlie part of the Azegour pluton and the Cambrian lithologies. The intense folding which affects the Cambrian rocks of the Amizmiz-Azegou]
+[A thick Cretaceous continental and marine sedimentary sequence unconformably overlie part of the Azegour pluton and the Cambrian lithologies.]
 --------------------------------------------------
-us schist), marbleized limestone, overlying a volcanic assemblage of felsic pyroclastic rock, andesite and basalt. The Hercyninan Azegour pluton intruded the volcanosedimentary sequence. A thick Cretaceous continental and marine sedimentary sequence unconformably overlie part of the Azegour pluton and the Cambrian lithologies. The intense folding which affects the Cambrian rocks of the Amizmiz-Azegou
+A thick Cretaceous continental and marine sedimentary sequence unconformably overlie part of the Azegour pluton and the Cambrian lithologies.
 
 
-[ded significant gold intersections as summarized below: 
+[Twenty-nine diamond drill holes totaling 5,900 meters yielded significant gold intersections as summarized below: 
    
  
  
@@ -23,9 +23,10 @@ us schist), marbleized limestone, overlying a volcanic assemblage of felsic pyro
  
      
          
-     ]
+                                                         
+                                         ]
 --------------------------------------------------
-ded significant gold intersections as summarized below: 
+Twenty-nine diamond drill holes totaling 5,900 meters yielded significant gold intersections as summarized below: 
    
  
  
@@ -38,13 +39,17 @@ ded significant gold intersections as summarized below:
  
      
          
-     
+                                                         
+                                         
 
 
-=== Extracted People ===
+=== Executives/Officers ===
 
 Name: David Lalonde
 Role: President
 
 Name: Qualified Person
 Role: President
+
+=== Board Members ===
+No board members extracted

@@ -3,22 +3,41 @@
 from typing import List, Optional, Dict, Any
 from src.models.company import Company
 from src.services.db_service import DatabaseService
+from src.services.llm_service import LLMService
+import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 class CompanyService:
     """Service for managing company operations."""
     
-    def __init__(self):
-        """Initialize the company service."""
-        self.db_service = DatabaseService()
+    def __init__(self, config: Dict[str, Any]):
+        """Initialize the company service.
+        
+        Args:
+            config: Configuration dictionary containing service settings
+        """
+        self.db_service = DatabaseService(config)
+        self.llm_service = LLMService(config)
     
     def get_all_companies(self) -> List[Company]:
-        """Get all companies.
-        
-        Returns:
-            List of Company instances
-        """
-        companies_data = self.db_service.get_all_companies()
-        return [Company.from_dict(data) for data in companies_data]
+        """Get all companies from the database."""
+        try:
+            with self.db_service.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute("""
+                        SELECT id, website, company_name, ticker, exchange,
+                               headquarters_location, founded_date, description,
+                               officers, board_members, data_source
+                        FROM mining_companies
+                        ORDER BY company_name
+                    """)
+                    rows = cur.fetchall()
+                    return [Company(*row) for row in rows]
+        except Exception as e:
+            logger.error(f"Error getting companies: {str(e)}")
+            return []
     
     def get_company_by_name(self, name: str) -> Optional[Company]:
         """Get a company by name.
@@ -142,4 +161,20 @@ class CompanyService:
         Returns:
             List of dictionaries containing company and board member information
         """
-        return self.db_service.get_all_board_members() 
+        return self.db_service.get_all_board_members()
+    
+    def update_data_source(self, company_id: int, data_source: dict) -> bool:
+        """Update the data source for a company's management information."""
+        try:
+            with self.db_service.get_connection() as conn:
+                with conn.cursor() as cur:
+                    cur.execute("""
+                        UPDATE mining_companies 
+                        SET data_source = %s::jsonb 
+                        WHERE id = %s
+                    """, (json.dumps(data_source), company_id))
+                    conn.commit()
+                    return True
+        except Exception as e:
+            logger.error(f"Error updating data source for company {company_id}: {str(e)}")
+            return False 

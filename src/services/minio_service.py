@@ -2,7 +2,8 @@ from typing import List, Optional
 import os
 from minio import Minio
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import urlparse, unquote
+import hashlib
 
 from src.config.settings import settings
 
@@ -59,9 +60,9 @@ class MinioService:
         
         downloaded_files = []
         for obj in sample:
-            output_path = output_dir / obj.object_name
-            # Create parent directories if needed
-            output_path.parent.mkdir(parents=True, exist_ok=True)
+            # Create a safe filename using a hash of the object name
+            safe_name = hashlib.md5(obj.object_name.encode()).hexdigest()
+            output_path = output_dir / f"{safe_name}.json"
             
             # Download the object
             self.client.fget_object(

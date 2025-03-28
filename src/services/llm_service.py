@@ -1,22 +1,24 @@
 """Service for managing LLM operations."""
 
 import os
-from typing import List, Dict, Optional
+from typing import List, Dict, Optional, Any
 import openai
 from dotenv import load_dotenv
-from src.services.company_service import CompanyService
 
 class LLMService:
     """Service for managing LLM operations."""
     
-    def __init__(self):
-        """Initialize the LLM service."""
-        load_dotenv()
-        self.api_key = os.getenv('OPENAI_API_KEY')
+    def __init__(self, config: Dict[str, Any]):
+        """Initialize the LLM service.
+        
+        Args:
+            config: Configuration dictionary containing API keys and settings
+        """
+        self.api_key = config['openai_api_key']
         if not self.api_key:
-            raise ValueError("OPENAI_API_KEY not found in environment variables")
+            raise ValueError("OpenAI API key not found in configuration")
         openai.api_key = self.api_key
-        self.company_service = CompanyService()
+        self.config = config
         
     def extract_management_info(self, company_name: str, content: str) -> Dict[str, List[Dict[str, str]]]:
         """Extract management information using LLM.

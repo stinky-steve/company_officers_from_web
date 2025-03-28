@@ -1,0 +1,238 @@
+Processing Summary
+==================================================
+Company: Aya Gold & Silver Inc.
+Domain: ayagoldsilver.com
+Files processed: 6
+Total people found: 33
+
+=== Unique Executives/Officers ===
+--------------------------------------------------
+
+Name: Benoit La Salle
+Role: President
+
+Name: Grou
+Role: Chief Operating Officer
+
+Name: Torkia Lagacé
+Role: Vice President
+
+Name: Counsel
+Role: Corporate Secretary
+
+Name: Tirzzit
+Role: President
+
+Name: Aya
+Role: Chief Executive Officer
+
+Name: Mustapha Elouafi
+Role: President
+
+Name: Ugo
+Role: President
+
+Name: Elias
+Role: President
+
+Name: Alex Ball
+Role: President
+
+Name: Raphaël Beaudoin
+Role: President
+
+Name: David Lalonde
+Role: President
+
+=== Unique Board Members ===
+--------------------------------------------------
+
+Name: Tirzzit
+Role: Director
+
+Name: Robert Taub
+Role: Director
+
+Name: Jürgen Hambrecht
+Role: Director
+
+Name: Yves Grou
+Role: Director
+
+Name: Ghislane Guedira
+Role: Director
+
+Name: Amplitude Conseil
+Role: Director
+
+Name: Annie Torkia Lagacé
+Role: Director
+
+Name: Eloïse Martin
+Role: Director
+
+Name: Nikolaos Sofronis
+Role: Director
+
+Name: Algold
+Role: Director
+
+Name: ZMSM
+Role: Director
+
+Name: La Salle
+Role: Director
+
+Name: Landry-Tolszczuk
+Role: Director
+
+Name: Meryem Baroudi
+Role: Director
+
+Name: Aya
+Role: Director
+
+
+=== Final Executives List (JSON) ===
+[
+  {
+    "name": "Benoit La Salle",
+    "role": "President",
+    "contact_info": null
+  },
+  {
+    "name": "Grou",
+    "role": "Chief Operating Officer",
+    "contact_info": null
+  },
+  {
+    "name": "Torkia Lagac\u00e9",
+    "role": "Vice President",
+    "contact_info": null
+  },
+  {
+    "name": "Counsel",
+    "role": "Corporate Secretary",
+    "contact_info": null
+  },
+  {
+    "name": "Tirzzit",
+    "role": "President",
+    "contact_info": null
+  },
+  {
+    "name": "Aya",
+    "role": "Chief Executive Officer",
+    "contact_info": null
+  },
+  {
+    "name": "Mustapha Elouafi",
+    "role": "President",
+    "contact_info": null
+  },
+  {
+    "name": "Ugo",
+    "role": "President",
+    "contact_info": null
+  },
+  {
+    "name": "Elias",
+    "role": "President",
+    "contact_info": null
+  },
+  {
+    "name": "Alex Ball",
+    "role": "President",
+    "contact_info": null
+  },
+  {
+    "name": "Rapha\u00ebl Beaudoin",
+    "role": "President",
+    "contact_info": null
+  },
+  {
+    "name": "David Lalonde",
+    "role": "President",
+    "contact_info": null
+  }
+]
+
+
+=== Final Board Members List (JSON) ===
+[
+  {
+    "name": "Tirzzit",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Robert Taub",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "J\u00fcrgen Hambrecht",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Yves Grou",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Ghislane Guedira",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Amplitude Conseil",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Annie Torkia Lagac\u00e9",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Elo\u00efse Martin",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Nikolaos Sofronis",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Algold",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "ZMSM",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "La Salle",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Landry-Tolszczuk",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Meryem Baroudi",
+    "role": "Director",
+    "contact_info": null
+  },
+  {
+    "name": "Aya",
+    "role": "Director",
+    "contact_info": null
+  }
+]

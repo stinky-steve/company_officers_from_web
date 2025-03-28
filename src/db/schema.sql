@@ -2,7 +2,7 @@
 CREATE TABLE IF NOT EXISTS mining_companies (
     id SERIAL PRIMARY KEY,
     website VARCHAR(255) NOT NULL UNIQUE,
-    company_name VARCHAR(255) NOT NULL,
+    company_name VARCHAR(255) NOT NULL UNIQUE,
     ticker VARCHAR(50),
     exchange VARCHAR(50),
     headquarters_location VARCHAR(255),

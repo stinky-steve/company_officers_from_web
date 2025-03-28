@@ -2,13 +2,13 @@
 spacy==3.5.0               # NLP library for NER and text processing
 
 # HTML parsing
-beautifulsoup4==4.12.3     # For extracting plain text from HTML content
+beautifulsoup4==4.12.2     # For extracting plain text from HTML content
 
 # LLM API integration
-openai==1.12.0             # OpenAI API client to interact with GPT models
+openai==1.3.5             # OpenAI API client to interact with GPT models
 
 # Database connectivity
-psycopg2-binary==2.9.9      # PostgreSQL adapter for Python
+psycopg2==2.9.9      # PostgreSQL adapter for Python
 
 # Language detection (to filter non-English pages)
 langdetect==1.0.9          # For detecting the language of the text
@@ -24,7 +24,7 @@ requests==2.31.0         # HTTP library if needed for custom API calls
 # tiktoken==0.3.0          # Optional for token counting with OpenAI models
 
 # Core dependencies
-python-dotenv==1.0.1  # For loading environment variables
+python-dotenv==1.0.0  # For loading environment variables
 minio==7.2.3  # For MinIO client
 pydantic==2.6.3  # For data validation and settings management
 pydantic-settings==2.2.1  # For data validation and settings management
@@ -41,3 +41,5 @@ flake8==7.0.0  # For linting
 mypy==1.8.0  # For type checking
 
 urllib3==2.2.1  # For HTTP requests
+
+python-dateutil==2.8.2

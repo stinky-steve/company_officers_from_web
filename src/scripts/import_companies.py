@@ -1,3 +1,5 @@
+"""Script to import company data from CSV into the mining_companies table."""
+
 import os
 import sys
 import csv
@@ -8,6 +10,17 @@ from psycopg2.extras import execute_values
 # Add the project root directory to the Python path
 project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 sys.path.append(project_root)
+
+def normalize_website_url(url):
+    """Normalize website URL by adding https:// if needed."""
+    if not url:
+        return None
+    url = url.strip()
+    if not url:
+        return None
+    if not url.startswith('http://') and not url.startswith('https://'):
+        url = f"https://{url}"
+    return url
 
 def import_companies():
     """Import company data from CSV into the mining_companies table."""
@@ -46,16 +59,40 @@ def import_companies():
         skipped = []
         
         print("\nReading CSV file...")
-        with open(csv_file, 'r', encoding='utf-8') as f:
+        with open(csv_file, 'r', encoding='utf-8-sig') as f:
+            # Read the first few lines for debugging
+            print("\nFirst few lines of the CSV file:")
+            for i, line in enumerate(f):
+                if i < 5:
+                    print(f"Line {i+1}: {line.strip()}")
+            
+            # Reset file pointer to beginning
+            f.seek(0)
+            
             reader = csv.DictReader(f)
             for i, row in enumerate(reader, start=2):  # start=2 because row 1 is header
+                # Debug output for first few rows
+                if i <= 5:
+                    print(f"\nProcessing Row {i}:")
+                    print(f"  Raw Website: '{row.get('Website', '')}'")
+                    print(f"  Company: '{row.get('Company Name', '')}'")
+                
                 # Skip rows where company name is empty
                 if not row.get('Company Name'):
                     skipped.append(f"Row {i}: Empty company name")
                     continue
-                    
+                
+                # Use the actual website URL from the CSV, or a placeholder if empty
+                website = normalize_website_url(row.get('Website', ''))
+                if not website:
+                    website = f"http://placeholder/{row['Company Name'].lower().replace(' ', '-')}"
+                    skipped.append(f"Row {i}: Using placeholder website")
+                
+                if i <= 5:
+                    print(f"  Processed Website: '{website}'")
+                
                 companies.append((
-                    row.get('Website', ''),  # Use empty string if website is None
+                    website,
                     row['Company Name'],
                     row.get('Ticker', ''),
                     row.get('Exchange', ''),
@@ -63,7 +100,8 @@ def import_companies():
                     None,  # founded_date
                     None,  # description
                     '[]',  # officers (empty JSONB array)
-                    '[]'   # board_members (empty JSONB array)
+                    '[]',  # board_members (empty JSONB array)
+                    '{"officers": null, "board_members": null}'  # data_source (JSONB)
                 ))
         
         print(f"\nPrepared {len(companies)} companies for import...")
@@ -85,7 +123,8 @@ def import_companies():
                 founded_date,
                 description,
                 officers,
-                board_members
+                board_members,
+                data_source
             )
             VALUES %s
             ON CONFLICT (company_name) 
@@ -114,10 +153,16 @@ def import_companies():
         print(f"Total companies processed: {len(companies)}")
         print(f"Successfully imported: {len(results)}")
         
-        # Display first few imported companies
+        # Display first few imported companies with their websites
         print("\nSample of imported companies:")
-        for i, (id, name) in enumerate(results[:5]):
+        cur.execute("""
+            SELECT id, company_name, website 
+            FROM mining_companies 
+            WHERE id IN (SELECT id FROM mining_companies LIMIT 5)
+        """)
+        for i, (id, name, website) in enumerate(cur.fetchall()):
             print(f"  {i+1}. {name} (ID: {id})")
+            print(f"     Website: {website}")
         
         # Close cursor and connection
         cur.close()
